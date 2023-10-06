@@ -9,13 +9,18 @@ export default defineComponent({
     todos: {
       type: Array as PropType<any>
     }
+  },
+  methods: {
+    toggleTodo(id:number) {
+      this.$emit('toggleTodo', id)
+    }
   }
 })
 </script>
 
 <template>
   <ul class="todo-list">
-    <AppTodoListItem v-for="todo in todos" :key="todo.id" :todo="todo"/>
+    <AppTodoListItem @toggle-todo="toggleTodo(todo.id)" v-for="todo in todos" :key="todo.id" :todo="todo"/>
   </ul>
 </template>
 

@@ -2,7 +2,7 @@
   <AppHeader/>
   <AppFilter/>
   <main class="app-main">
-    <AppTodoList :todos="todos"/>
+    <AppTodoList @toggle-todo="toggleTodo" :todos="todos"/>
     <AppAddTodo/>
   </main>
   <AppFooter/>
@@ -22,6 +22,7 @@ import {Todo} from "./types/Todo.ts";
 interface State {
   todos: Todo[]
 }
+
 export default defineComponent({
 
   components: {AppFooter, AppAddTodo, AppTodoList, AppHeader, AppFilter},
@@ -32,6 +33,15 @@ export default defineComponent({
         {id: 1, text: 'Учить JS', completed: true},
         {id: 2, text: 'Учить VUE', completed: false},
       ]
+    }
+  },
+  methods: {
+    toggleTodo(id: number) {
+      const targetTodo = this.todos.find(x => x.id === id);
+
+      if (targetTodo) {
+        targetTodo.completed = !targetTodo.completed;
+      }
     }
   }
 })
