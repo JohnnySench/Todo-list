@@ -2,7 +2,7 @@
   <AppHeader/>
   <AppFilter/>
   <main class="app-main">
-    <AppTodoList/>
+    <AppTodoList :todos="todos"/>
     <AppAddTodo/>
   </main>
   <AppFooter/>
@@ -17,8 +17,22 @@ import AppHeader from "./components/AppHeader.vue";
 import AppTodoList from "./components/AppTodoList.vue";
 import AppAddTodo from "./components/AppAddTodo.vue";
 import AppFooter from "./components/AppFooter.vue";
+import {Todo} from "./types/Todo.ts";
 
+interface State {
+  todos: Todo[]
+}
 export default defineComponent({
-  components: {AppFooter, AppAddTodo, AppTodoList, AppHeader, AppFilter}
+
+  components: {AppFooter, AppAddTodo, AppTodoList, AppHeader, AppFilter},
+  data(): State {
+    return {
+      todos: [
+        {id: 0, text: 'Учить TS', completed: false},
+        {id: 1, text: 'Учить JS', completed: true},
+        {id: 2, text: 'Учить VUE', completed: false},
+      ]
+    }
+  }
 })
 </script>
