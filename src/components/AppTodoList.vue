@@ -28,7 +28,12 @@ export default defineComponent({
 
 <template>
   <ul class="todo-list">
-    <AppTodoListItem @remove-todo="removeTodo" @toggle-todo="toggleTodo" v-for="todo in todos" :key="todo.id" :todo="todo"/>
+    <AppTodoListItem
+        @remove-todo="removeTodo"
+        @toggle-todo="toggleTodo"
+        v-for="todo in todos"
+        :key="todo.id"
+        :todo="todo"/>
   </ul>
 </template>
 
