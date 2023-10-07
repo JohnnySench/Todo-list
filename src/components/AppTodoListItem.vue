@@ -5,7 +5,8 @@ import {Todo} from "../types/Todo.ts";
 export default defineComponent({
   name: "AppTodoListItem",
   emits: {
-    toggleTodo: (id: number) => Number.isInteger(id)
+    toggleTodo: (id: number) => Number.isInteger(id),
+    removeTodo: (id: number) => Number.isInteger(id)
   },
   props: {
     todo: {
@@ -16,6 +17,9 @@ export default defineComponent({
   methods: {
     toggleTodo() {
       this.$emit('toggleTodo', this.todo.id)
+    },
+    removeTodo() {
+      this.$emit('removeTodo', this.todo.id)
     }
   }
 })
@@ -27,7 +31,7 @@ export default defineComponent({
       <i class="bi bi-check2"></i>
     </div>
     <span class="todo-item__text">{{todo.text}}</span>
-    <button class="todo-item__remove-button">
+    <button @click.stop="removeTodo" class="todo-item__remove-button">
       <i class="bi bi-trash3"></i>
     </button>
   </li>

@@ -2,7 +2,7 @@
   <AppHeader/>
   <AppFilter/>
   <main class="app-main">
-    <AppTodoList @toggle-todo="toggleTodo" :todos="todos"/>
+    <AppTodoList @remove-todo="removeTodo" @toggle-todo="toggleTodo" :todos="todos"/>
     <AppAddTodo/>
   </main>
   <AppFooter/>
@@ -42,6 +42,10 @@ export default defineComponent({
       if (targetTodo) {
         targetTodo.completed = !targetTodo.completed;
       }
+    },
+
+    removeTodo(id: number) {
+      this.todos = this.todos.filter(x => x.id !== id)
     }
   }
 })
